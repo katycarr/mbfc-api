@@ -1,6 +1,11 @@
 class SourcesController < ApplicationController
+  include SourcesHelper
   def index
-    @sources = Source.all
+    if params[:q]
+      @sources = search(params[:q])
+    else
+      @sources = Source.all
+    end
     render json: @sources
   end
 
