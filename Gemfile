@@ -37,6 +37,8 @@ gem 'activerecord-reset-pk-sequence'
 gem 'activerecord-import'
 
 gem 'rack-cors'
+
+gem 'fuzzy_match'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
