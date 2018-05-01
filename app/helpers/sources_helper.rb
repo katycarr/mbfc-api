@@ -1,8 +1,10 @@
 module SourcesHelper
   def search(term)
-    matchable_term = term.downcase.gsub(/\s+/, '')
-    @source = Source.find do |source|
-      source.name.downcase.gsub(/\s+/, '').include?(matchable_term) or source.url.downcase.include?(matchable_term)
+    match_by_name = FuzzyMatch.new(Source.all, read: :name)
+    @source = match_by_name.find(term)
+    if !@source
+      match_by_url = FuzzyMatch.new(Source.all, read: :url)
+      @source = match_by_url.find(term)
     end
     @source
   end
