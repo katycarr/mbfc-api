@@ -9,7 +9,7 @@ module SourcesHelper
 
   def searchable(phrase)
     stopwords = ["a", "the"]
-    no_stopwords = phrase.split(' ').reject {|word| stopwords.include?(word)}.join('')
-    stripped = no_stopwords.gsub(/[^0-9A-Za-z]/, '').downcase
+    no_stopwords = phrase.downcase.split(' ').reject {|word| stopwords.include?(word)}.join('')
+    stripped = no_stopwords.gsub(/[^0-9A-Za-z]/, '')
   end
 end
